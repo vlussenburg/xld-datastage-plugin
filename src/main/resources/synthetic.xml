@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
+    FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
+-->
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic" xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+
+	<type type="datastage.ExecutedDatastageDSXDeploy" extends="udm.BaseDeployedArtifact" deployable-type="datastage.DatastageDSXDeploy" container-type="datastage.DatastageClient">
+		<generate-deployable type="datastage.DatastageDSXDeploy" extends="udm.BaseDeployableArtifact" copy-default-values="true"/>
+		<property name="deploymentDSProject" description="Datastage Container Project"/>
+		<property name="deploymentDSJob" description="The job contained within this DSX Artifact" />
+	</type>
+
+	<type type="datastage.DatastageClient" extends="generic.Container" description="Generic Datastage client">
+		<property name="deploymentExecutable" required="false" default="/opt/IBM/InformationServer/ASBNode/bin/DSXImportService.sh" hidden="true" description="The OS-specific wrapper script that calls the Datastage client" />
+		<property name="deploymentOptions" description="Datastage Import Options" default="-Overwrite -Verbose"/>
+		<property name="deploymentISAuthFile" description="Datastage Authorization File" default="/opt/IBM/InformationServer/properties/authfile.txt" hidden="true"/>
+		<property name="workDirectory" description="Location to write temporary files for deploy jobs to" default="/home/dsadm/xldeploy/release/" />
+	</type>
+
+</synthetic>

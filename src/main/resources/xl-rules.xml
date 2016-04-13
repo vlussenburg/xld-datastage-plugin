@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
+    FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
+-->
+<rules xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
+	
+	<rule name="datastage.ExecutedDatastageDSXDeploy_CREATE_MODIFY" scope="deployed">
+		<conditions>
+			<type>datastage.ExecutedDatastageDSXDeploy</type>
+			<operation>CREATE</operation>
+			<operation>MODIFY</operation>
+		</conditions>
+		<steps>
+			<os-script>
+				<order>70</order>
+				<target-host expression="true">deployed.container.host</target-host>
+				<script>datastage/datastage-perform-deploy</script>
+			</os-script>
+		</steps>
+	</rule>
+
+	<rule name="datastage.ExecutedDatastageDSXDeploy_DESTROY" scope="deployed">
+		<conditions>
+			<type>datastage.ExecutedDatastageDSXDeploy</type>
+			<operation>DESTROY</operation>
+		</conditions>
+		<steps>
+			<os-script>
+			<order>30</order>
+			<script>datastage/datastage-perform-undeploy</script>
+			</os-script>
+		</steps>
+	</rule>
+
+</rules>
